@@ -6,7 +6,7 @@
 #    By: acroue <acroue@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 11:51:52 by acroue            #+#    #+#              #
-#    Updated: 2024/02/19 18:25:05 by acroue           ###   ########.fr        #
+#    Updated: 2024/02/19 20:17:18 by acroue           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,3 +121,12 @@ cre:
 norm:
 	@norminette $(SRCS_DIR) $(INCS_DIR) $(BONUS_DIR) | awk '/'Error'/ {print; found=1} END {if (!found) print "$(PURPLE)Norm O.K.$(DEFAULT)"}'
 	@norminette $(LIBFT_DIR) | awk '/'Error'/ {print; found=1} END {if (!found) print "$(YELLOW)Norm libft O.K.$(DEFAULT)"}'
+
+test:
+	@cc -g -o client srcs/client.c libs/libft/libft.a -Iincludes
+	@cc -g -o server srcs/server.c libs/libft/libft.a -Iincludes
+
+tc:
+	@rm client
+	@rm server
+	@echo "$(RED)Cleaned$(DEFAULT)"
