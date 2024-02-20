@@ -6,7 +6,7 @@
 #    By: acroue <acroue@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 11:51:52 by acroue            #+#    #+#              #
-#    Updated: 2024/02/20 13:15:26 by acroue           ###   ########.fr        #
+#    Updated: 2024/02/20 16:04:31 by acroue           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ endef
 SRC := $(strip $(SRC))
 
 define BONUS_SRC :=
-	$(addprefix $(BONUS_DIR)/, server.c)
+	server.c
 endef
 BONUS_SRC := $(strip $(BONUS_SRC))
 
@@ -107,9 +107,9 @@ relib: fcleanlib $(LIBFT)
 
 bonus: $(BONUS)
 
-$(BONUS): $(LIBFT) $(OBJ)
+$(BONUS): $(LIBFT) $(BONUS_OBJ)
 	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(BONUS)
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIB) -o $(BONUS)
 
 cre:
 	@clear
