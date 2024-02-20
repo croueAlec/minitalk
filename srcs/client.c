@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:43:59 by acroue            #+#    #+#             */
-/*   Updated: 2024/02/20 12:23:23 by acroue           ###   ########.fr       */
+/*   Updated: 2024/02/20 13:18:12 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	send_char(int ch, pid_t pid)
 void	send_str(char *str, pid_t pid)
 {
 	size_t	i;
+
 	i = 0;
 	printf("%s\n\n", str);
 	while (str[i])
@@ -66,7 +67,7 @@ void	send_str(char *str, pid_t pid)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	pid_t	pid;
 
@@ -76,4 +77,3 @@ int main(int argc, char **argv)
 	send_str(argv[2], pid);
 	return (0);
 }
-
