@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/02/20 13:19:05 by acroue           ###   ########.fr       */
+/*   Updated: 2024/02/20 16:12:40 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	print_pid(void)
 	ft_printf("%d\n", pid);
 }
 
-int	main(int argc, char const *argv[])
+int	main(void)
 {
-	size_t	i;
+	int		i;
 	char	str[9];
 
 	ft_memset(str, '0', 8);
