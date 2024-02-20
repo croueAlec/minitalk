@@ -6,13 +6,13 @@
 #    By: acroue <acroue@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 11:51:52 by acroue            #+#    #+#              #
-#    Updated: 2024/02/20 11:51:50 by acroue           ###   ########.fr        #
+#    Updated: 2024/02/20 13:15:26 by acroue           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Program name
-NAME = minitalk
-BONUS = minitalk_bonus
+NAME = client
+BONUS = server
 
 # Colors
 DEFAULT    = \033[0m
@@ -48,15 +48,12 @@ endef
 INCLUDES := $(strip $(INCLUDES))
 
 define SRC :=
-	main.c
-	forks.c
-	exec.c
-	here_doc.c
+	client.c
 endef
 SRC := $(strip $(SRC))
 
 define BONUS_SRC :=
-	$(addprefix $(BONUS_DIR)/, salut_bonus.c)
+	$(addprefix $(BONUS_DIR)/, server.c)
 endef
 BONUS_SRC := $(strip $(BONUS_SRC))
 
@@ -73,7 +70,7 @@ LIB_FLAGS = --no-print-directory --silent
 # Rules
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ) $(BONUS)
 	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $@
 

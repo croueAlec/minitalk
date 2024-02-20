@@ -1,6 +1,8 @@
 # Own ignores
-minitalk
-minitalk_bonus
+client
+server
+salut
+salut.c
 
 # Prerequisites
 *.d
