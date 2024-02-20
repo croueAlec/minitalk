@@ -10,6 +10,7 @@ minitalk_bonus
 *.ko
 *.obj
 *.elf
+*/*.o
 
 # Linker output
 *.ilk
@@ -25,6 +26,7 @@ minitalk_bonus
 *.a
 *.la
 *.lo
+*/*.a
 
 # Shared objects (inc. Windows DLLs)
 *.dll

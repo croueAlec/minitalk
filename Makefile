@@ -6,7 +6,7 @@
 #    By: acroue <acroue@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 11:51:52 by acroue            #+#    #+#              #
-#    Updated: 2024/02/19 20:17:18 by acroue           ###   ########.fr        #
+#    Updated: 2024/02/20 11:51:50 by acroue           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,6 +125,7 @@ norm:
 test:
 	@cc -g -o client srcs/client.c libs/libft/libft.a -Iincludes
 	@cc -g -o server srcs/server.c libs/libft/libft.a -Iincludes
+	@echo "Test"
 
 tc:
 	@rm client

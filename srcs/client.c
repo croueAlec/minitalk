@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:43:59 by acroue            #+#    #+#             */
-/*   Updated: 2024/02/19 21:25:09 by acroue           ###   ########.fr       */
+/*   Updated: 2024/02/20 12:23:23 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <unistd.h>
 
 int	int_to_binary(int decimal_num)
 {
@@ -35,14 +36,20 @@ int	int_to_binary(int decimal_num)
 
 void	send_char(int ch, pid_t pid)
 {
-	while (ch > 0)
+	size_t	i;
+
+	i = 0;
+	while (i < 8)
 	{
-		printf("%d\n", int_to_binary(ch));
+		if (i == 0)
+			printf("%d\n", int_to_binary(ch));
 		if (ch & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		ch = ch >> 1;
+		usleep(1);
+		i++;
 	}
 }
 
@@ -54,6 +61,7 @@ void	send_str(char *str, pid_t pid)
 	while (str[i])
 	{
 		send_char(str[i], pid);
+		usleep(1);
 		i++;
 	}
 }

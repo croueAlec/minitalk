@@ -6,7 +6,7 @@
 /*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:57 by acroue            #+#    #+#             */
-/*   Updated: 2024/02/19 21:27:34 by acroue           ###   ########.fr       */
+/*   Updated: 2024/02/20 13:00:43 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	convert_signals_to_char(char *str)
 	int		res;
 
 	res = 0;
+	i = 0;
 	while (str[i])
 	{
 		res = res << 1 | str[i] - 48;
 		i++;
 	}
-	ft_memset(str, '0', 9);
 	return (res);
 }
 
@@ -43,40 +43,38 @@ void	catch_signals(int code)
 	}
 }
 
-void	received_one(int code)
+void	print_pid(void)
 {
-	printf("1\n");
-}
+	pid_t	pid;
 
-void	received_two(int code)
-{
-	printf("0\n");
+	pid = getpid();
+	ft_printf("%d\n", pid);
 }
 
 int main(int argc, char const *argv[])
 {
-	pid_t	pid;
 	size_t	i;
 	char	str[9];
 
-	i = 8;
-	pid = getpid();
-	printf("%d\n", pid);
-	signal(SIGUSR1, &received_one);
-	signal(SIGUSR2, &received_two);
+	ft_memset(str, '0', 8);
+	str[8]= '\0';
+	i = 7;
+	value = -1;
+	print_pid();
+	signal(SIGUSR1, &catch_signals);
+	signal(SIGUSR2, &catch_signals);
 	while (1)
-		;
-	// while (1)
-	// {
-	// 	if (i == 0)
-	// 	{
-	// 		convert_signals_to_char(str);
-	// 		i = 8;
-	// 	}
-	// 	signal(SIGUSR1, &catch_signals);
-	// 	signal(SIGUSR2, &catch_signals);
-	// 	str[i] = value + 48;
-	// 	i--;
-	// }
+	{
+		if (value != -1)
+		{
+			str[i] = value + 48;
+			if (--i == -1)
+			{
+				ft_putchar_fd(convert_signals_to_char(str), 1);
+				i = 7;
+			}
+			value = -1;
+		}
+	}
 	return (0);
 }
